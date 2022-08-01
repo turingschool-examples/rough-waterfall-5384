@@ -25,7 +25,7 @@ RSpec.describe Customer, type: :feature do
       expect(page).not_to have_content(supermkt_2.name)
 
       within "ul" do
-        require 'pry'; binding.pry 
+        save_and_open_page
         expect(page).to have_content(item_1.name)
         expect(page).to have_content(item_3.name)
         expect(page).to have_content(item_1.price)
