@@ -11,19 +11,15 @@ RSpec.describe Item, type: :feature do
   let!(:item_2) { Item.create!(name: 'Eggs', price: 200) }
   let!(:item_3) { Item.create!(name: 'Bread', price: 100) }
 
-  describe 'show page' do
-    it 'should show the supermarket name' do
-      visit supermarket_path(supermarket_1.id)
-
-      expect(page).to have_content(supermarket_1.name)
-      expect(page).not_to have_content(supermarket_2.name)
-    end
-
+  describe 'index page' do
     it 'should display a list of the supermarkets items' do
       item_1.customers << customer_1
       item_2.customers << customer_1
       item_3.customers << customer_2
+      item_1.customers << customer_2
+
       supermarket_1.customers << customer_1
+      supermarket_1.customers << customer_2
 
       visit supermarket_path(supermarket_1.id)
 
